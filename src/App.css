@@ -1,0 +1,1072 @@
+.page-shell {
+  width: 100%;
+}
+
+.app-shell {
+  width: auto;
+  max-width: calc(100% - 32px);
+  margin: 0 auto;
+}
+
+.main-shell {
+  padding: 24px 0 44px;
+}
+
+.site-header {
+  width: 100%;
+  background: #2f3136;
+  border-bottom: 1px solid #44474d;
+  box-shadow: none;
+}
+
+.site-footer {
+  width: 100%;
+  background: #2f3136;
+  border-top: 1px solid #44474d;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.session-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  color: #d7d7dc;
+  font-size: 14px;
+}
+
+.session-name-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.session-name-link:hover {
+  text-decoration: underline;
+}
+
+.session-logout-link {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #d7d7dc;
+  font: inherit;
+  cursor: pointer;
+  text-align: center;
+}
+
+.session-logout-link:hover {
+  color: #c62828;
+  text-decoration: underline;
+}
+
+.session-pill .form-button {
+  min-height: 32px;
+  padding: 6px 10px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #f5f5f7;
+  text-decoration: none;
+  font-family: var(--heading);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.brand-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+  transform: translateY(-2px);
+}
+
+.topnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-left: auto;
+}
+
+.topnav a,
+.secondary-action,
+.card-link {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.topnav a {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: #c7c7cc;
+  transition: color 0.18s ease;
+}
+
+.topnav a:hover {
+  color: #ffffff;
+}
+
+.topnav a[aria-current='page'] {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+main {
+  display: grid;
+  gap: 28px;
+}
+
+.panel {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.hero-section {
+  display: block;
+  padding: 20px 0 28px;
+  background: transparent;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.section-tag {
+  display: inline-flex;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  background: var(--tag-bg);
+  color: var(--accent-deep);
+}
+
+.hero-copy h1 {
+  max-width: 520px;
+  margin: 15px 0 12px;
+}
+
+.hero-copy p,
+.panel-heading p,
+.detail-header p,
+.mini-detail-panel p {
+  max-width: 65ch;
+  color: var(--muted-strong);
+}
+
+.hero-actions,
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero-actions {
+  margin-top: 20px;
+}
+
+.hero-section .hero-actions {
+  justify-content: flex-end;
+  margin-top: 0;
+}
+
+.primary-action,
+.secondary-action,
+.form-button {
+  display: inline-block;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.primary-action {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+.secondary-action {
+  background: #ffffff;
+  border-color: var(--border);
+}
+
+.primary-action:hover,
+.secondary-action:hover,
+.form-button:hover {
+  transform: translateY(-1px);
+}
+
+.secondary-action:hover {
+  border-color: #bfc3c9;
+  background: #f5f5f7;
+}
+
+.danger-action {
+  background: #fff1f1;
+  border-color: #ebb3b3;
+  color: #9b1f1f;
+}
+
+.danger-action:hover {
+  background: #ffe7e7;
+  border-color: #dc8c8c;
+  color: #7f1717;
+}
+
+.two-column-section,
+.admin-layout,
+.profile-panel,
+.detail-layout {
+  display: grid;
+  gap: 28px;
+}
+
+.profile-admin-panel {
+  display: grid;
+  gap: 18px;
+}
+
+.admin-users-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+  gap: 18px;
+}
+
+.admin-users-list,
+.admin-user-detail,
+.detail-card {
+  padding: 18px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+}
+
+.admin-users-list h3,
+.admin-user-detail h3 {
+  margin-top: 0;
+}
+
+.admin-users-grid {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.admin-user-card {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #f8f9fb;
+  text-align: left;
+  cursor: pointer;
+}
+
+.admin-user-card strong,
+.admin-user-card span,
+.admin-user-card small {
+  display: block;
+}
+
+.admin-user-card-active {
+  border-color: var(--accent);
+  background: #eef4ff;
+}
+
+.detail-card p {
+  margin: 0 0 8px;
+}
+
+.two-column-section,
+.admin-layout {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.auth-panel,
+.register-panel,
+.auctions-panel,
+.admin-panel,
+.detail-panel,
+.mini-detail-panel {
+  padding: 0;
+}
+
+.panel-heading {
+  margin-bottom: 18px;
+}
+
+.panel-heading-inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 12px;
+}
+
+.auth-page-intro,
+.detail-page-intro,
+.admin-page-intro,
+.faq-page-intro,
+.auctions-page-intro {
+  padding: 0 0 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.auctions-page-intro-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.auctions-page-intro-header h1 {
+  margin: 0;
+}
+
+.auth-page-intro p,
+.detail-page-intro p,
+.admin-page-intro p,
+.faq-page-intro p,
+.auctions-page-intro p {
+  margin-top: 12px;
+  color: var(--muted-strong);
+}
+
+.featured-panel {
+  padding: 0;
+}
+
+.faq-panel {
+  padding: 0;
+}
+
+.api-status {
+  margin: 0 0 16px;
+  color: var(--muted-strong);
+  font-weight: 600;
+}
+
+.api-error-box {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 18px;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #e2b7b7;
+  background: #fff3f3;
+}
+
+.api-error-box p {
+  margin: 0;
+  color: #8f2222;
+}
+
+.faq-item + .faq-item {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid #d2d2d7;
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.faq-question span:first-child {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.faq-icon {
+  display: inline-block;
+  font-size: 24px;
+  color: var(--muted-strong);
+  transform: rotate(0deg);
+}
+
+.faq-icon-open {
+  transform: rotate(90deg);
+}
+
+.faq-answer {
+  margin: 12px 0 0;
+  color: var(--muted-strong);
+  max-width: 75ch;
+}
+
+.auth-form,
+.admin-form,
+.bid-box {
+  display: grid;
+  gap: 12px;
+}
+
+.editor-panel {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #f8f9fb;
+}
+
+.editor-panel h3 {
+  margin: 0;
+}
+
+.editor-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.editor-grid label {
+  display: grid;
+  gap: 8px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.editor-full-row {
+  grid-column: 1 / -1;
+}
+
+.editor-images-group {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px dashed #c8ccd2;
+  background: #ffffff;
+}
+
+.editor-images-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.editor-images-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.editor-hidden-file-input {
+  display: none;
+}
+
+.editor-image-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 10px;
+  align-items: end;
+}
+
+.editor-image-row label {
+  display: grid;
+  gap: 8px;
+}
+
+.auth-form label,
+.admin-form label,
+.bid-box label {
+  display: grid;
+  gap: 8px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+input,
+select {
+  min-height: 42px;
+  padding: 8px 10px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--ink);
+  font: inherit;
+}
+
+.feature-list,
+.bid-history {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted-strong);
+}
+
+.feature-list li + li,
+.bid-history li + li {
+  margin-top: 8px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.featured-panel .card-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.auctions-cards-panel .card-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.auction-card {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.2fr) minmax(220px, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  padding: 18px 0;
+  border-radius: 0;
+  text-decoration: none;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  transition: background-color 0.18s ease;
+}
+
+.auction-card:hover {
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: none;
+  transform: none;
+}
+
+.featured-panel .auction-card {
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 12px;
+  padding: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.featured-panel .auction-card:hover {
+  background: #f8f9fb;
+  border-color: #c9ccd2;
+}
+
+.auctions-cards-panel .auction-card {
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 12px;
+  padding: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.auctions-cards-panel .auction-card:hover {
+  background: #f8f9fb;
+  border-color: #c9ccd2;
+}
+
+.auctions-cards-panel .auction-meta {
+  display: grid;
+  gap: 10px;
+}
+
+.auctions-cards-panel .auction-meta div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 10px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.card-badge {
+  justify-self: start;
+  padding: 5px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: #eaf3ff;
+  color: var(--accent-deep);
+}
+
+.auction-card h3,
+.info-card h3,
+.admin-table-card h3 {
+  margin: 0;
+  font-size: 19px;
+}
+
+.auction-card p {
+  margin: 0;
+  color: var(--muted-strong);
+}
+
+.auction-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 0;
+}
+
+.auction-meta div {
+  display: grid;
+  gap: 4px;
+  min-width: 110px;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.auction-meta dt,
+.auction-meta dd {
+  margin: 0;
+}
+
+.auction-meta dt {
+  color: var(--muted);
+}
+
+.auction-meta dd,
+.card-link,
+.price-box strong,
+.admin-row strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.small-button {
+  min-height: 34px;
+  padding: 6px 10px;
+}
+
+.detail-stack {
+  display: grid;
+  gap: 24px;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.price-box {
+  min-width: 220px;
+  display: grid;
+  gap: 6px;
+  padding: 16px;
+  border-radius: 4px;
+  background: var(--panel-muted);
+  border: 1px solid var(--border);
+}
+
+.price-box span,
+.price-box small,
+.admin-row span {
+  color: var(--muted);
+}
+
+.detail-layout {
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+}
+
+.product-visual,
+.info-card,
+.admin-table-card {
+  padding: 18px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--border);
+}
+
+.visual-placeholder {
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  background: #ebecef;
+  color: var(--muted-strong);
+  font-weight: 700;
+}
+
+.product-carousel {
+  display: grid;
+  gap: 10px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.carousel-main {
+  position: relative;
+  min-height: 250px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #f2f3f5;
+}
+
+.carousel-main-button {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  object-fit: contain;
+  display: block;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  min-width: 36px;
+  min-height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(20, 20, 20, 0.3);
+  background: rgba(255, 255, 255, 0.92);
+  color: #111111;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.carousel-control-prev {
+  left: 10px;
+}
+
+.carousel-control-next {
+  right: 10px;
+}
+
+.carousel-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.carousel-thumb {
+  padding: 0;
+  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  min-height: 70px;
+  cursor: pointer;
+}
+
+.carousel-thumb-image {
+  width: 100%;
+  height: 100%;
+  min-height: 70px;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-thumb-active {
+  border-color: #8f949d;
+  background: #f3f4f7;
+}
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 12, 13, 0.86);
+  display: grid;
+  place-items: center;
+  z-index: 50;
+  padding: 18px;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: min(92vw, 980px);
+  max-height: 90vh;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  min-width: 34px;
+  min-height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(16, 16, 16, 0.75);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.lightbox-image {
+  max-width: min(92vw, 980px);
+  max-height: 90vh;
+  border-radius: 6px;
+  background: #ffffff;
+  display: block;
+}
+
+.detail-info {
+  display: grid;
+  gap: 12px;
+}
+
+.compact-list {
+  padding-left: 16px;
+}
+
+.bid-history {
+  list-style: none;
+  padding: 0;
+}
+
+.bid-history li,
+.admin-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.bid-history li + li,
+.admin-row + .admin-row {
+  padding-top: 10px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.admin-table {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.admin-row div {
+  display: grid;
+  gap: 4px;
+}
+
+.admin-message {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.admin-message-error {
+  background: #fff2f2;
+  border: 1px solid #efc4c4;
+  color: #972121;
+}
+
+.admin-message-success {
+  background: #f1fff1;
+  border: 1px solid #bbe2bb;
+  color: #166434;
+}
+
+.helper-text {
+  margin: -4px 0 0;
+  color: var(--muted-strong);
+  font-size: 14px;
+}
+
+button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.danger-outline {
+  border-color: #c7c7cc;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.footer-block h3 {
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #d2d2d7;
+  color: #f5f5f7;
+}
+
+.footer-block p {
+  margin: 0 0 8px;
+  color: #e7e7ea;
+}
+
+@media (max-width: 980px) {
+  .featured-panel .card-grid,
+  .auctions-cards-panel .card-grid,
+  .two-column-section,
+  .admin-layout,
+  .detail-layout,
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .auction-card {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .auction-meta {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .editor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .editor-image-row {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-users-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    max-width: calc(100% - 20px);
+  }
+
+  .auction-meta {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-link {
+  display: inline-block;
+  margin-top: 6px;
+  color: #9fd0ff;
+  font-weight: 700;
+}
+
+@media (max-width: 980px) {
+  .topbar,
+  .hero-header-row,
+  .panel-heading-inline,
+  .detail-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-section,
+  .two-column-section,
+  .card-grid,
+  .detail-layout,
+  .admin-layout,
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .app-shell {
+    width: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    max-width: calc(100% - 16px);
+    padding-top: 12px;
+  }
+
+  .hero-section,
+  .auth-panel,
+  .register-panel,
+  .auctions-panel,
+  .detail-panel,
+  .mini-detail-panel,
+  .admin-panel {
+    padding: 16px;
+  }
+
+  .hero-copy h1 {
+    max-width: none;
+    font-size: 32px;
+  }
+
+  .topnav {
+    gap: 6px;
+  }
+
+  .carousel-thumbnails {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .carousel-main,
+  .carousel-image {
+    min-height: 210px;
+  }
+}
