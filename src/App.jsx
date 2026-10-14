@@ -172,7 +172,7 @@ const initialEditorForm = {
   seller: '',
   condition: '',
   extras: '',
-  images: ['', '', ''],
+  images: [],
 }
 
 function AuctionsStatus({ isLoading, error, onRetry, context }) {
@@ -265,7 +265,6 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
   const [editorSuccess, setEditorSuccess] = useState('')
   const [isSaving, setIsSaving] = useState(false)
   const [isUploadingImages, setIsUploadingImages] = useState(false)
-  const [uploadReplaceIndex, setUploadReplaceIndex] = useState(null)
   const imagesFileInputRef = useRef(null)
 
   const isAdmin = session?.user?.role === 'admin'
@@ -279,24 +278,6 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
     }))
   }
 
-  const onEditorImageChange = (index, value) => {
-    setEditorForm((previous) => {
-      const images = Array.isArray(previous.images) ? [...previous.images] : []
-      images[index] = value
-      return {
-        ...previous,
-        images,
-      }
-    })
-  }
-
-  const addEditorImageField = () => {
-    setEditorForm((previous) => ({
-      ...previous,
-      images: [...(Array.isArray(previous.images) ? previous.images : []), ''],
-    }))
-  }
-
   const getUploadFolderHint = () => {
     const candidate = editingAuctionId || editorForm.id || editorForm.title || 'producto'
     return String(candidate)
@@ -306,7 +287,7 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
       .replace(/^-+|-+$/g, '')
   }
 
-  const uploadImageFiles = async (files, replaceIndex = null) => {
+  const uploadImageFiles = async (files) => {
     if (!session?.token) {
       setEditorError('Necesitas sesion de administrador para subir imagenes.')
       return
@@ -326,8 +307,6 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
     setIsUploadingImages(true)
     setEditorError('')
 
-    let nextReplaceIndex = replaceIndex
-
     try {
       for (const file of avifFiles) {
         const result = await uploadAuctionImage(file, getUploadFolderHint(), session.token)
@@ -339,13 +318,7 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
 
         setEditorForm((previous) => {
           const images = Array.isArray(previous.images) ? [...previous.images] : []
-
-          if (nextReplaceIndex != null && nextReplaceIndex >= 0 && nextReplaceIndex < images.length) {
-            images[nextReplaceIndex] = uploadedPath
-            nextReplaceIndex += 1
-          } else {
-            images.push(uploadedPath)
-          }
+          images.push(uploadedPath)
 
           return {
             ...previous,
@@ -361,13 +334,11 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
   }
 
   const handleImagesFileSelection = async (event) => {
-    await uploadImageFiles(event.target.files, uploadReplaceIndex)
+    await uploadImageFiles(event.target.files)
     event.target.value = ''
-    setUploadReplaceIndex(null)
   }
 
-  const openImagesFilePicker = (replaceIndex = null) => {
-    setUploadReplaceIndex(replaceIndex)
+  const openImagesFilePicker = () => {
     imagesFileInputRef.current?.click()
   }
 
@@ -396,7 +367,6 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
 
   const beginEditAuction = (auction) => {
     const formImages = buildAuctionCarouselImages(auction).map((image) => image.src)
-    const imagesForEditor = formImages.length ? formImages : ['']
 
     setEditingAuctionId(auction.id)
     setEditorError('')
@@ -413,7 +383,7 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
       seller: auction.seller,
       condition: auction.condition,
       extras: auction.extras,
-      images: imagesForEditor,
+      images: formImages,
     })
   }
 
@@ -477,7 +447,7 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
 
     try {
       await deleteAuction(auctionId, session?.token)
-      setEditorSuccess('artículo eliminado correctamente.')
+      setEditorSuccess('Artículo eliminado correctamente.')
       if (editingAuctionId === auctionId) {
         resetEditor()
       }
@@ -629,13 +599,6 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
                     >
                       {isUploadingImages ? 'Subiendo...' : 'Subir archivos'}
                     </button>
-                    <button
-                      type="button"
-                      className="secondary-action form-button small-button"
-                      onClick={addEditorImageField}
-                    >
-                      Anadir foto
-                    </button>
                   </div>
                 </div>
 
@@ -650,24 +613,7 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
 
                 {(Array.isArray(editorForm.images) ? editorForm.images : []).map((imagePath, index) => (
                   <div className="editor-image-row" key={`${editingAuctionId || 'new'}-image-field-${index}`}>
-                    <label>
-                      Foto {index + 1}
-                      <input
-                        type="text"
-                        value={imagePath}
-                        onChange={(event) => onEditorImageChange(index, event.target.value)}
-                        placeholder="Subir archivo .avif aquí"
-                      />
-                    </label>
-
-                    <button
-                      type="button"
-                      className="secondary-action form-button small-button"
-                      onClick={() => openImagesFilePicker(index)}
-                      disabled={isUploadingImages}
-                    >
-                      Añadir archivo
-                    </button>
+                    <span>{imagePath}</span>
 
                     <button
                       type="button"

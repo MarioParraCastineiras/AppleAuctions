@@ -537,14 +537,14 @@ main {
 
 .editor-image-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 10px;
-  align-items: end;
+  align-items: center;
 }
 
-.editor-image-row label {
-  display: grid;
-  gap: 8px;
+.editor-image-row span {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .auth-form label,
