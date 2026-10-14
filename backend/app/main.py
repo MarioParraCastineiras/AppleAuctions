@@ -17,8 +17,9 @@ from .core.exceptions import (
     unhandled_error_handler,
     validation_error_handler,
 )
-from .database import close_mongo_connection, connect_to_mongo, get_database
+from .core.prices import normalize_price
 from .core.security import hash_password
+from .database import close_mongo_connection, connect_to_mongo, get_database
 from .models.auction_seed import AUCTION_SEED_DATA
 
 
@@ -40,6 +41,36 @@ async def ensure_auth_session_ttl_index(db, ttl_seconds: int):
     await db.auth_sessions.create_index("created_at", expireAfterSeconds=ttl_seconds)
 
 
+async def normalize_stored_auction_prices(db):
+    async for auction in db.auctions.find(
+        {},
+        {"startingPrice": 1, "currentBid": 1, "bids": 1},
+    ):
+        updates = {}
+        for field in ("startingPrice", "currentBid"):
+            if field in auction:
+                normalized = normalize_price(auction[field])
+                if normalized != auction[field]:
+                    updates[field] = normalized
+
+        bids = auction.get("bids")
+        if isinstance(bids, list):
+            normalized_bids = []
+            bids_changed = False
+            for bid in bids:
+                if isinstance(bid, dict) and "amount" in bid:
+                    normalized_amount = normalize_price(bid["amount"])
+                    if normalized_amount != bid["amount"]:
+                        bid = {**bid, "amount": normalized_amount}
+                        bids_changed = True
+                normalized_bids.append(bid)
+            if bids_changed:
+                updates["bids"] = normalized_bids
+
+        if updates:
+            await db.auctions.update_one({"_id": auction["_id"]}, {"$set": updates})
+
+
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     await connect_to_mongo()
@@ -49,6 +80,7 @@ async def lifespan(_: FastAPI):
     await db.users.create_index("username", unique=True)
     await db.users.create_index("email", unique=True)
     await db.auth_sessions.create_index("token", unique=True)
+    await normalize_stored_auction_prices(db)
 
     try:
         await ensure_auth_session_ttl_index(

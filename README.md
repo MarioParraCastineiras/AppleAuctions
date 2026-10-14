@@ -16,15 +16,23 @@ Aplicación web para consultar y gestionar subastas. Incluye una interfaz en Rea
    npm install
    ```
 
-2. Configura la base de datos. Copia el archivo de ejemplo y añade la URI de conexión de MongoDB:
+2. Configura la base de datos. En Windows, copia el archivo de ejemplo con PowerShell:
 
-   ```bash
-   cp .env.example .env
+   ```powershell
+   Copy-Item .env.example .env
    ```
 
-   Edita `MONGODB_URI` en `.env` con tu dirección de conexión.
+   En macOS/Linux, usa `cp .env.example .env`. En ambos casos, edita `MONGODB_URI` en `.env` con tu dirección de conexión.
 
-3. Instala las dependencias de la API:
+3. Crea y activa el entorno virtual. En Windows (PowerShell):
+
+   ```powershell
+   py -m venv .venv
+   .\.venv\Scripts\Activate.ps1
+   python -m pip install -r backend/requirements.txt
+   ```
+
+   En macOS/Linux:
 
    ```bash
    python3 -m venv .venv
@@ -32,7 +40,7 @@ Aplicación web para consultar y gestionar subastas. Incluye una interfaz en Rea
    python -m pip install -r backend/requirements.txt
    ```
 
-4. Inicia la aplicación y la API:
+4. Con el entorno virtual todavía activo en esa terminal, inicia la aplicación y la API:
 
    ```bash
    npm run dev:full

@@ -26,7 +26,7 @@ import {
 
 const faqItems = [
   {
-    question: '¿Como puedo participar en una subasta?',
+    question: '¿Cómo puedo participar en una subasta?',
     answer:
       'Para participar necesitas acceder con tu cuenta o registrarte desde la pagina de acceso. Una vez dentro podras pujar en nombre propio en cada producto.',
   },
@@ -38,7 +38,7 @@ const faqItems = [
   {
     question: '¿La plataforma incluye metodo de pago?',
     answer:
-      'No. En esta fase del proyecto no se contempla pasarela de pago. El objetivo es centrarse en la publicacion de articulos y en las pujas.',
+      'No. En esta fase del proyecto no se contempla pasarela de pago. El objetivo es centrarse en la publicacion de artículos y en las pujas.',
   },
   {
     question: '¿Quien puede gestionar los productos?',
@@ -48,7 +48,7 @@ const faqItems = [
   {
     question: '¿Puedo ver el detalle de cada producto?',
     answer:
-      'Si. Cada producto cuenta con su propia pagina dedicada donde se muestra la informacion del articulo y el historial de pujas.',
+      'Si. Cada producto cuenta con su propia pagina dedicada donde se muestra la informacion del artículo y el historial de pujas.',
   },
 ]
 
@@ -122,7 +122,7 @@ function Header({ session, onLogout }) {
                 {session.user.username}
               </Link>
               <button type="button" className="session-logout-link" onClick={onLogout}>
-                (cerrar sesion)
+                (Cerrar Sesión)
               </button>
             </>
           ) : (
@@ -149,8 +149,8 @@ function Footer() {
         </div>
 
         <div className="footer-block">
-          <h3>Gestion</h3>
-          <p>La gestion de articulos se realiza en la pagina de subastas con Modo edicion.</p>
+          <h3>Gestión</h3>
+          <p>La gestión de artículos se realiza en la página de subastas con Modo edición.</p>
           <Link className="footer-link" to="/subastas">
             Ir a subastas
           </Link>
@@ -202,7 +202,7 @@ function HomePage({ featuredAuctions, isLoading, error, onRetry }) {
       <section className="hero-section panel" id="inicio">
         <div className="hero-copy">
           <div className="hero-header-row">
-            <h1>Compra y vende articulos de segunda mano mediante subastas en tiempo real.</h1>
+            <h1>Compra y vende artículos de segunda mano mediante subastas en tiempo real.</h1>
 
             <div className="hero-actions">
               <Link className="primary-action" to="/subastas">
@@ -225,7 +225,7 @@ function HomePage({ featuredAuctions, isLoading, error, onRetry }) {
         {!isLoading && !error ? (
           <div className="card-grid">
             {featuredAuctions.map((auction) => (
-              <Link className="auction-card" to={`/producto/${auction.id}`} key={auction.id}>
+              <article className="auction-card" key={auction.id}>
                 <span className="card-badge">{auction.status}</span>
                 <h3>{auction.title}</h3>
                 <p>{auction.category}</p>
@@ -245,8 +245,10 @@ function HomePage({ featuredAuctions, isLoading, error, onRetry }) {
                   </div>
                 </dl>
 
-                <span className="card-link">Ver detalle</span>
-              </Link>
+                <Link className="card-link" to={`/producto/${auction.id}`}>
+                  Ver detalle
+                </Link>
+              </article>
             ))}
           </div>
         ) : null}
@@ -448,10 +450,10 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
     try {
       if (editingAuctionId) {
         await updateAuction(editingAuctionId, payload, session?.token)
-        setEditorSuccess('Articulo actualizado correctamente.')
+        setEditorSuccess('Artículo actualizado correctamente.')
       } else {
         await createAuction(payload, session?.token)
-        setEditorSuccess('Articulo creado correctamente.')
+        setEditorSuccess('Artículo creado correctamente.')
       }
 
       resetEditor()
@@ -464,7 +466,7 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
   }
 
   const removeAuctionInEdition = async (auctionId) => {
-    const confirmDelete = window.confirm('¿Seguro que quieres eliminar este articulo?')
+    const confirmDelete = window.confirm('¿Seguro que quieres eliminar este artículo?')
     if (!confirmDelete) {
       return
     }
@@ -475,7 +477,7 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
 
     try {
       await deleteAuction(auctionId, session?.token)
-      setEditorSuccess('Articulo eliminado correctamente.')
+      setEditorSuccess('artículo eliminado correctamente.')
       if (editingAuctionId === auctionId) {
         resetEditor()
       }
@@ -494,7 +496,7 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
           <h1>Subastas activas</h1>
           {isAdmin ? (
             <button type="button" className="secondary-action form-button" onClick={toggleEditionMode}>
-              {isEditionEnabled ? 'Modo visualizacion' : 'Modo edicion'}
+              {isEditionEnabled ? 'Modo visualizacion' : 'Modo edición'}
             </button>
           ) : null}
         </div>
@@ -504,7 +506,7 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
       <section className="panel auctions-panel auctions-cards-panel">
         <div className="panel-heading panel-heading-inline">
           <div>
-            <h2>Catalogo de subastas</h2>
+            <h2>Catálogo de subastas</h2>
           </div>
         </div>
 
@@ -512,7 +514,7 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
 
         {isEditionEnabled ? (
           <form className="editor-panel" onSubmit={submitEditor}>
-            <h3>{editingAuctionId ? 'Editar articulo' : 'Crear articulo'}</h3>
+            <h3>{editingAuctionId ? 'Editar artículo' : 'Crear artículo'}</h3>
 
             <div className="editor-grid">
               <label>
@@ -526,7 +528,7 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
                 />
               </label>
               <label>
-                Nombre del articulo
+                Nombre del artículo
                 <input
                   type="text"
                   name="title"
@@ -596,7 +598,7 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
                 />
               </label>
               <label>
-                Estado del articulo
+                Estado del artículo
                 <input
                   type="text"
                   name="condition"
@@ -684,7 +686,7 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
                   name="description"
                   value={editorForm.description}
                   onChange={onEditorChange}
-                  placeholder="Descripcion del articulo"
+                  placeholder="Descripción del artículo"
                 />
               </label>
             </div>
@@ -698,7 +700,7 @@ function AuctionsPage({ auctions, isLoading, error, onRetry, session }) {
 
             <div className="form-row">
               <button type="submit" className="primary-action form-button" disabled={isSaving}>
-                {editingAuctionId ? 'Guardar cambios' : 'Crear articulo'}
+                {editingAuctionId ? 'Guardar cambios' : 'Crear artículo'}
               </button>
               <button
                 type="button"
@@ -798,7 +800,7 @@ function AuthPage({ onAuthSuccess }) {
 
     if (!loginForm.usernameOrEmail.trim() || !loginForm.password.trim()) {
       setAuthSuccess('')
-      setAuthError('Debes completar usuario/correo y contrasena para iniciar sesion.')
+      setAuthError('Debes completar usuario/correo y contraseña para iniciar sesion.')
       return
     }
 
@@ -826,7 +828,7 @@ function AuthPage({ onAuthSuccess }) {
 
     if (!registerForm.username.trim() || !registerForm.email.trim() || !registerForm.password.trim()) {
       setAuthSuccess('')
-      setAuthError('Debes completar usuario, correo y contrasena para registrarte.')
+      setAuthError('Debes completar usuario, correo y contraseña para registrarte.')
       return
     }
 
@@ -886,7 +888,7 @@ function AuthPage({ onAuthSuccess }) {
                 name="password"
                 value={loginForm.password}
                 onChange={onLoginChange}
-                placeholder="Introduce tu contrasena"
+                placeholder="Introduce tu contraseña"
               />
             </label>
 
@@ -926,7 +928,7 @@ function AuthPage({ onAuthSuccess }) {
               />
             </label>
             <label>
-              Contrasena
+              Contraseña
               <input
                 type="password"
                 name="password"
@@ -1174,7 +1176,7 @@ function ProfilePage({ session, onSessionUpdate }) {
 
       <section className="panel profile-panel">
         <div className="panel-heading">
-          <h2>Editar informacion personal</h2>
+          <h2>Editar información personal</h2>
           <p>Actualiza tu nombre de usuario, correo o contrasena.</p>
         </div>
 
@@ -1470,9 +1472,8 @@ function DetailPage({ session }) {
   return (
     <main>
       <section className="panel detail-page-intro">
-        <h1>{selectedAuction.title}</h1>
-        <p>{selectedAuction.description}</p>
-        <div className="hero-actions">
+        <div className="detail-page-heading">
+          <h1>{selectedAuction.title}</h1>
           <Link className="secondary-action" to="/subastas">
             Volver a subastas
           </Link>
@@ -1483,7 +1484,7 @@ function DetailPage({ session }) {
         <article className="panel detail-panel">
           <div className="detail-header">
             <div>
-              <h2>{selectedAuction.title}</h2>
+              <p>{selectedAuction.description}</p>
               <p>{selectedAuction.category}</p>
             </div>
             <div className="price-box">
@@ -1563,13 +1564,13 @@ function DetailPage({ session }) {
                   ) : null}
                 </div>
               ) : (
-                <div className="visual-placeholder">Sin imagenes disponibles para este articulo.</div>
+                <div className="visual-placeholder">Sin imagenes disponibles para este artículo.</div>
               )}
             </div>
 
             <div className="detail-info">
               <div className="info-card">
-                <h3>Informacion del producto</h3>
+                <h3>Información del producto</h3>
                 <ul className="feature-list compact-list">
                   <li>Estado: {selectedAuction.condition}</li>
                   <li>Vendedor: {selectedAuction.seller}</li>
@@ -1590,7 +1591,6 @@ function DetailPage({ session }) {
                   ) : (
                     <li>
                       <span>Sin pujas todavia</span>
-                      <strong>{selectedAuction.startingPrice}</strong>
                     </li>
                   )}
                 </ul>
@@ -1677,7 +1677,7 @@ function FaqPage() {
     <main>
       <section className="panel faq-page-intro">
         <h1>Preguntas frecuentes</h1>
-        <p>Informacion general sobre el funcionamiento de la plataforma de subastas.</p>
+        <p>Información general sobre el funcionamiento de la plataforma de subastas.</p>
       </section>
 
       <section className="panel faq-panel">

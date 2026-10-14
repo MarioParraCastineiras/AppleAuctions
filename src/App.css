@@ -201,7 +201,8 @@ main {
 
 .primary-action,
 .secondary-action,
-.form-button {
+.form-button,
+.card-link {
   display: inline-block;
   min-height: 44px;
   padding: 10px 16px;
@@ -218,6 +219,22 @@ main {
   background: var(--accent);
   color: #ffffff;
   border-color: var(--accent);
+  text-decoration: none;
+}
+
+.primary-action:hover {
+  text-decoration: underline;
+}
+
+.card-link {
+  background: var(--accent);
+  color: #ffffff;
+  border: 1px solid var(--accent);
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
 }
 
 .secondary-action {
@@ -227,7 +244,8 @@ main {
 
 .primary-action:hover,
 .secondary-action:hover,
-.form-button:hover {
+.form-button:hover,
+.card-link:hover {
   transform: translateY(-1px);
 }
 
@@ -347,11 +365,26 @@ main {
   border-bottom: 1px solid var(--border);
 }
 
+.detail-page-intro {
+  border-bottom: 0;
+}
+
 .auctions-page-intro-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
+}
+
+.detail-page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.detail-page-heading h1 {
+  margin: 0;
 }
 
 .auctions-page-intro-header h1 {
@@ -673,7 +706,6 @@ select {
 }
 
 .auction-meta dd,
-.card-link,
 .price-box strong,
 .admin-row strong {
   font-weight: 700;

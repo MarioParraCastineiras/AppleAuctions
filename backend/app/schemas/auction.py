@@ -1,4 +1,6 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
+
+from ..core.prices import normalize_price
 
 
 class AuctionBase(BaseModel):
@@ -13,6 +15,11 @@ class AuctionBase(BaseModel):
     condition: str = Field(default="Pendiente de revision", min_length=1, max_length=120)
     extras: str = Field(default="Sin extras", min_length=1, max_length=240)
     images: list[str] = Field(default_factory=list)
+
+    @field_validator("startingPrice", "currentBid", mode="before")
+    @classmethod
+    def normalize_prices(cls, value: object) -> object:
+        return normalize_price(value)
 
 
 class AuctionCreate(AuctionBase):
@@ -32,15 +39,30 @@ class AuctionUpdate(BaseModel):
     extras: str | None = Field(default=None, min_length=1, max_length=240)
     images: list[str] | None = Field(default=None)
 
+    @field_validator("startingPrice", "currentBid", mode="before")
+    @classmethod
+    def normalize_prices(cls, value: object) -> object:
+        return normalize_price(value)
+
 
 class BidCreate(BaseModel):
     amount: str = Field(min_length=1, max_length=40)
+
+    @field_validator("amount", mode="before")
+    @classmethod
+    def normalize_amount(cls, value: object) -> object:
+        return normalize_price(value)
 
 
 class BidOut(BaseModel):
     bidder: str = Field(min_length=1)
     amount: str = Field(min_length=1)
     createdAt: str = Field(min_length=1)
+
+    @field_validator("amount", mode="before")
+    @classmethod
+    def normalize_amount(cls, value: object) -> object:
+        return normalize_price(value)
 
 
 class AuctionOut(BaseModel):
@@ -57,3 +79,8 @@ class AuctionOut(BaseModel):
     extras: str = Field(min_length=1)
     images: list[str] = Field(default_factory=list)
     bids: list[BidOut] = Field(default_factory=list)
+
+    @field_validator("currentBid", "startingPrice", mode="before")
+    @classmethod
+    def normalize_prices(cls, value: object) -> object:
+        return normalize_price(value)
